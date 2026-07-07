@@ -5,6 +5,11 @@
   color: lightblue;
   /* padding: 20px; */
   display: grid;
-  
-
+}
+.footer {
+    width: 100%;
+    background: #1e293b;
+    color: white;
+    text-align: center;
+    padding: 15px;
 }
