@@ -1,0 +1,10 @@
+.main{
+  display: flex;
+}
+.home{
+  color: lightblue;
+  /* padding: 20px; */
+  display: grid;
+  
+
+}

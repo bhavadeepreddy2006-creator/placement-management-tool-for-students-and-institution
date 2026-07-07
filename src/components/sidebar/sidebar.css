@@ -1,0 +1,13 @@
+.leftbar{
+    /* text-align: left;
+    color: blanchedalmond; */
+    width: 230px;
+    height: calc(100vh-70px);
+    background-color:aliceblue;
+    padding: 20px;
+    color: black;
+}
+.leftbar li:hover{
+    background-color: blue;
+    color: aliceblue;
+}

@@ -1,0 +1,17 @@
+.nav{
+    /* background-color: beige; */
+    color: lightgreen;
+}
+.navbar{
+    height: 70px;
+    /* background-color: antiquewhite; */
+    /* padding: 15px; */
+    justify-content: space-between;
+    align-items: center;
+}
+.profile{
+    color: lightblue;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 15px; */
+}
