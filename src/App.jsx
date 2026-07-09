@@ -1,6 +1,6 @@
+import { useState } from "react";
 import "./App.css";
-
-
+import Login from "./pages/login/login";
 import Home from "./pages/home";
 
 // root component
@@ -17,11 +17,10 @@ import Home from "./pages/home";
 
 function App(){
   return(
-    // <> 
-    //   <h1>Hello students</h1>
-    //   <p>Learn today lead tomorow</p>
-    // </>
-    <Home/>
+    <div>
+      {/* <Home/> */}
+      <Login/>
+    </div>
   )
 }
 export default App; 
