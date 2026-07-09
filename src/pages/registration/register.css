@@ -1,0 +1,115 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    color: black;
+}
+
+.registration-container{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#f4f7fc;
+    padding:30px;
+}
+
+.registration-card{
+    width:600px;
+    background:#fff;
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+}
+
+.registration-card h1{
+    text-align:center;
+    color:#1e3a8a;
+    margin-bottom:35px;
+    font-size:38px;
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+.form-group input{
+    width:100%;
+    padding:16px 18px;
+
+    border:1px solid #d1d5db;
+    border-radius:10px;
+
+    font-size:17px;
+
+    outline:none;
+
+    transition:.3s;
+}
+
+.form-group input:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 8px rgba(37,99,235,.2);
+}
+
+button{
+    width:100%;
+    padding:15px;
+
+    border:none;
+    border-radius:10px;
+
+    background:#2563eb;
+    color:white;
+
+    font-size:18px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.form-group input{
+    width:100%;
+    padding:16px 18px;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    font-size:17px;
+    color:#333;              /* Input text color */
+    background:#fff;         /* Input background */
+    outline:none;
+}
+.form-group input::placeholder{
+    color:#888;
+}
+.form-group input:focus{
+    color:#333;
+    background:#fff;
+    border-color:#2563eb;
+}
+.studentdetails{
+    justify-content:center;
+    align-items:center;
+    background:#f4f7fc;
+    padding:30px;
+}
+.studentdetails h2{
+    text-align: center;
+    padding: 15px;
+}
+.studentdetails p{
+    padding: 5px;
+}
+.studentdetails{
+    margin-top:35px;
+    background:#eef4ff;
+    padding:20px;
+    border-left:5px solid #2563eb;
+    border-radius:10px;
+}
