@@ -1,11 +1,47 @@
-.leftbar{
-    width: 230px;
-    height: calc(100vh-70px);
-    background-color:aliceblue;
-    padding: 20px;
-    color: black;
+/* Sidebar Container */
+.leftbar {
+    width: 240px;
+    min-height: 100%;
+    background: #ffffff;
+
+    padding: 25px 20px;
+    margin: 20px;
+
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
-.leftbar li:hover{
-    background-color: blue;
-    color: aliceblue;
+
+/* Remove Bullet Points */
+.leftbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Menu Items */
+.leftbar li {
+    padding: 15px 20px;
+    margin-bottom: 10px;
+
+    border-radius: 8px;
+
+    font-size: 17px;
+    font-weight: 500;
+    color: #333;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+.leftbar li:hover {
+    background: #2563eb;
+    color: #fff;
+    transform: translateX(6px);
+}
+
+/* Active Item */
+.leftbar li:first-child {
+    background: #2563eb;
+    color: #fff;
 }
