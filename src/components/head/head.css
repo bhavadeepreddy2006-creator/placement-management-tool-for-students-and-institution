@@ -1,0 +1,37 @@
+/* .body{
+    text-align: center;
+    color: black;
+    display: flex;
+}
+.para{
+    padding: 5px;
+} */
+
+/* Main Body Section */
+.body {
+    width: 90%;
+    margin: 30px auto;
+    padding: 20px;
+
+    background-color: #ffffff;
+    border-left: 6px solid #2563eb;
+    border-radius: 10px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Announcement Title */
+.announcement-title {
+    margin: 0 0 12px 0;
+    color: #1e3a8a;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* Paragraph */
+.para {
+    margin: 0;
+    color: #555;
+    font-size: 17px;
+    line-height: 1.6;
+}
