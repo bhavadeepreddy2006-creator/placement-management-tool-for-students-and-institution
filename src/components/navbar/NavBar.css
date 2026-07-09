@@ -1,0 +1,103 @@
+/* .navbar{
+    height: 70px;
+    width: 100%;
+    background-color: lightblue;
+    color: black;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    position: fixed;
+
+}
+.nav{
+    background-color: beige;
+    color: lightgreen;
+}
+.profile{
+    color: lightblue;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+} */
+
+/* Navbar */
+.navbar{
+    width:100%;
+    min-height:90px;
+    background:#1e3a8a;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:15px 35px;
+    gap:25px;
+}
+
+/* Project Title */
+.nav{
+    flex:1;
+    color:#fff;
+    font-size:2rem;
+    font-weight:700;
+    line-height:1.2;
+    margin:0;
+    white-space:nowrap;
+    font-size:2rem;
+}
+
+/* Announcement Box */
+.announcement{
+    flex:2;
+    background:rgba(255,255,255,.12);
+    border-left:6px solid #fbbf24;
+    border-radius:12px;
+    padding:15px 25px;
+    text-align:center;
+}
+
+/* Announcement Heading */
+.announcement-title{
+    color:#fbbf24;
+    font-size:1.8rem;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+/* Announcement Text */
+.announcement-text{
+    color:#f8fafc;
+    font-size:1rem;
+    line-height:1.5;
+}
+
+/* Welcome/Profile */
+.profile{
+    background:rgba(255,255,255,.12);
+    color:white;
+    padding:14px 24px;
+    border-radius:30px;
+    font-size:1.2rem;
+    font-weight:600;
+    white-space:nowrap;
+}
+/* Responsive Design */
+/* @media (max-width: 768px) {
+
+    .navbar {
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        height: auto;
+        padding: 15px;
+        text-align: center;
+    }
+
+    .nav {
+        font-size: 22px;
+    }
+
+    .profile {
+        width: fit-content;
+    }
+} */
