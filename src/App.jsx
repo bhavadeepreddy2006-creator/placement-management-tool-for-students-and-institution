@@ -8,7 +8,7 @@ import { Route, Routes } from "react-router-dom";
 import Dashbord from "./components/dashbord/Dashbord";
 import Sidebar from "./components/sidebar/sidebar";
 import Layout from "./components/layouts/lauout";
-import Stu from "./pages/stu";
+import Stu from "./pages/studentlist";
 
 // root component
 // create component using fucntions
