@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import Studenttable from "../../components/Studenttable";
 import "./register.css";
 import { useState } from "react";
 
@@ -6,8 +8,10 @@ function Register(){
     const [email,setemail] = useState("");
     const [Phone,setphone] = useState("");
     const [Branch,setbranch] = useState("");
+    const [cgpa,setcgpa] = useState("");
     const [Password,setpassword] = useState("");
-    
+    const [students,setStudents] = useState([]);
+
     const emailpattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const passwordpattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
@@ -15,7 +19,7 @@ function Register(){
       event.preventDefault();
 
       // validation
-      if(StudentName.trim()==="" || Phone.trim()==="" || Branch.trim()==="" || Password.trim()==="" )
+      if(StudentName.trim()==="" || Phone.trim()==="" || Branch.trim()==="" || Password.trim()==="")
       {
         alert("Please fill all the fields")
         return;
@@ -27,6 +31,27 @@ function Register(){
         alert("Week Password")
       }
       
+      const Student ={
+        StudentName,
+        email,
+        Phone,
+        Branch,
+        cgpa,
+        Password
+      };
+      //Add students to array
+      // spread operator
+      setStudents([...students,Student]);
+      console.log("Registration successfull");
+      console.log({Student});
+
+      // clear form
+      SetStudentName("");
+      setemail("");
+      setphone("");
+      setbranch("");
+      setcgpa("");
+      setpassword("");
     }
 
     return(
@@ -64,22 +89,26 @@ function Register(){
           </div>
           <div className="form-group">
             <input
+              type="number"
+              placeholder="Enter Cgpa"
+              onChange={(event) => setcgpa(event.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <input
               type="password"
               placeholder="Enter password"
               onChange={(event) => setpassword(event.target.value)}
             />
           </div>
-          <button type="submit" onClick={registerstudent}>
+          <button className="button" type="submit" onClick={registerstudent}>
             Register Student
           </button>
         </form>
-        <div className="studentdetails">
-          <h2>Student Details</h2>
-          <p>Name:{StudentName} </p>
-          <p>Email:{email} </p>
-          <p>Phone:{Phone} </p>
-          <p>Branch:{Branch} </p>
-        </div>
+        <Link to="/login">
+        <h3>Already had an acount</h3>
+        </Link>
+        <Studenttable students = {students} />
       </div>
     </div>
     )

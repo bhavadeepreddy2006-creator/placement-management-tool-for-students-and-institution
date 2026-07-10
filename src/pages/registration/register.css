@@ -53,7 +53,7 @@
     box-shadow:0 0 8px rgba(37,99,235,.2);
 }
 
-button{
+.button{
     width:100%;
     padding:15px;
 
@@ -71,7 +71,7 @@ button{
     transition:.3s;
 }
 
-button:hover{
+.button:hover{
     background:#1d4ed8;
 }
 
@@ -93,20 +93,20 @@ button:hover{
     background:#fff;
     border-color:#2563eb;
 }
-.studentdetails{
+.studenttable{
     justify-content:center;
     align-items:center;
     background:#f4f7fc;
     padding:30px;
 }
-.studentdetails h2{
+.studenttable h2{
     text-align: center;
     padding: 15px;
 }
-.studentdetails p{
+.studenttable p{
     padding: 5px;
 }
-.studentdetails{
+.studenttable{
     margin-top:35px;
     background:#eef4ff;
     padding:20px;
