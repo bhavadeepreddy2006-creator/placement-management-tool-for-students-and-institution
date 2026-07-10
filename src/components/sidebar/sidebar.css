@@ -45,3 +45,30 @@
     background: #2563eb;
     color: #fff;
 }
+/* .active{
+    color: white;
+    background-color: lightblue;
+    padding: 15px 20px;
+    border;
+} */
+
+.leftbar a{
+    display:block;
+    padding:12px 18px;
+    text-decoration:none;
+    color:#374151;
+    border-radius:8px;
+    transition:0.3s;
+}
+
+.leftbar a:hover{
+    background:#dbeafe;
+    color:#2563eb;
+}
+
+.leftbar a.active{
+    background:#2563eb;
+    color:white;
+    font-weight:600;
+    box-shadow:0 4px 10px rgba(37,99,235,0.3);
+}
