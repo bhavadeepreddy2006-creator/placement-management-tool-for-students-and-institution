@@ -1,4 +1,5 @@
-import Home from "../home";
+import { Link } from "react-router-dom";
+import Home from "../home/home";
 import Register from "../registration/Register";
 import "./login.css"
 import { use, useState } from "react";
@@ -53,7 +54,9 @@ function Login(){
                         <h1 className="login-title">
                             Placement Management Login
                         </h1>
-
+                        <h2 className="login-message">
+                            Please Login
+                        </h2>
                         <input
                             className="login-input"
                             type="email"
@@ -77,11 +80,6 @@ function Login(){
                         >
                             {showpassword ? "Hide Password" : "Show Password"}
                         </button>
-
-                        <h2 className="login-message">
-                            Please Login
-                        </h2>
-
                         {
                             Loading ?
 
@@ -101,6 +99,9 @@ function Login(){
                                     Login
                                 </button>
                         }
+                        <Link to="/registration">
+                            <h3>Sign up</h3>            
+                        </Link>
 
                         <p className="login-status">
                             {message}
