@@ -1,0 +1,46 @@
+.body{
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+    width: 100% ;
+    margin:0;
+    padding:0;
+    background:#f4f7fc;
+    font-family:'Poppins',sans-serif;
+}
+
+/* Main Section */
+.main{
+    display:flex;
+    flex:1;
+    background:#f4f7fc;
+}
+
+/* Sidebar */
+.leftbar{
+    width:250px;
+    background:#ffffff;
+    border-right:1px solid #e5e7eb;
+    box-shadow:2px 0 10px rgba(0,0,0,0.08);
+}
+
+/* Content */
+.content{
+    flex:1;
+    padding:30px;
+    background:#f4f7fc;
+    overflow-y:auto;
+}
+
+/* Footer */
+.footer{
+    width:100%;
+    height:60px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:#1e3a8a;
+    color:#ffffff;
+}
