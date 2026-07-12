@@ -13,7 +13,7 @@ function Home(){
             <NavBar name = "Bhavadeep Reddy"/>
             <div className="main">
             <Sidebar/>
-            
+            <Dashbord/>
             </div>
             <Footer/>
         </div>
