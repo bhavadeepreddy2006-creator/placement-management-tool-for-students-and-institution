@@ -1,0 +1,72 @@
+/* ===========================
+   Student Management Page
+=========================== */
+
+.student-page{
+    width:100%;
+    padding:30px;
+    background:#f4f7fc;
+}
+
+/* Header */
+
+.student-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+/* Heading */
+
+.student-heading{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.student-title{
+    font-size:34px;
+    color:#1e3a8a;
+    font-weight:700;
+}
+
+.student-subtitle{
+    font-size:16px;
+    color:#6b7280;
+}
+
+/* Button */
+
+.add-student-btn{
+    padding:12px 24px;
+
+    border:none;
+    border-radius:8px;
+
+    background:#2563eb;
+    color:#ffffff;
+
+    font-size:16px;
+    font-weight:600;
+
+    cursor:pointer;
+    transition:.3s;
+}
+
+.add-student-btn:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}
+
+/* Table Container */
+
+.student-table-container{
+    background:#ffffff;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+    overflow-x:auto;
+}
