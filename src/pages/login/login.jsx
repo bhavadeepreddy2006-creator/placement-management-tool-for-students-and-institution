@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Home from "../home/home";
 import Register from "../registration/Register";
 import "./login.css"
@@ -16,13 +16,15 @@ function Login(){
     const [showpassword,setshowpassword] = useState(false);
     const [message,setmessage] = useState("");
     const [Loading,setLoading] = useState(false);
+    const navigate = useNavigate();
 
     function handleLogin() {
         setLoading(true);
         setTimeout(()=>{
             if (
-            email === "admin@gmail.com" &&
-            Password === "admin123"
+            email === "admin@gmail.com" 
+            &&
+            Password === "admin@123"
         ) {
             setmessage(" Login Successful");
             setisLoggedIn(true);
@@ -36,16 +38,17 @@ function Login(){
         
     }
 
+    if(isLoggedIn){
+        navigate("/dashboard")
+    }
+
     return(
         <>
            {
-            isLoggedIn ? (
-
-                <div className="app-body">
-                    <Home/>
-                </div>
-
-            ) : (
+            // isLoggedIn ? (
+                    // {/* <Home/> */}
+                    // navigate("/Dashbard")
+            // ) : (
 
                 <div className="login-container">
 
@@ -75,7 +78,7 @@ function Login(){
 
                         <button
                             type="button"
-                            className="show-password-btn"
+                            className="login-btn"
                             onClick={() => setshowpassword(!showpassword)}
                         >
                             {showpassword ? "Hide Password" : "Show Password"}
@@ -111,7 +114,7 @@ function Login(){
 
                 </div>
 
-            )
+            // )
         }
     </>
     );
