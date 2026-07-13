@@ -1,5 +1,6 @@
+import Clock from "../clock/clock";
 import "./dashbord.css";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 function Dashbord(){
     const [Student,setStudent] = useState(250)
@@ -44,8 +45,13 @@ function Dashbord(){
         ])
    }
 
+   useEffect(()=>{
+    alert("Welcome admin")
+   },[]);
+
     return(
         <div className="dashboard">
+            <Clock/>
             <div className="cards">
                 {/* <div className="card">
                     <p>Wlcome Back, {name}</p>
