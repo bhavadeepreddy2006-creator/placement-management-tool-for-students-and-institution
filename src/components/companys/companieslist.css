@@ -1,0 +1,71 @@
+/* ===========================
+   Company Management Page
+=========================== */
+
+.company-page{
+    width:100%;
+    padding:30px;
+    background:#f4f7fc;
+}
+
+/* Header */
+
+.company-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+    margin-bottom:25px;
+}
+
+/* Heading */
+
+.company-heading{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.company-title{
+    font-size:34px;
+    color:#1e3a8a;
+    font-weight:700;
+}
+
+.company-subtitle{
+    font-size:16px;
+    color:#6b7280;
+}
+
+/* Add Button */
+
+.add-company-btn{
+    padding:12px 24px;
+    border:none;
+    border-radius:8px;
+
+    background:#2563eb;
+    color:#fff;
+
+    font-size:16px;
+    font-weight:600;
+
+    cursor:pointer;
+    transition:.3s ease;
+}
+
+.add-company-btn:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}
+
+/* Table Container */
+
+.company-table-container{
+    background:#fff;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+    overflow-x:auto;
+}
