@@ -8,7 +8,7 @@ function Layout(){
     return(
         <>
         <div className="body">
-            <NavBar/>
+            <NavBar name = "Bhavadeep Reddy"/>
             <div className="main">
                 <Sidebar/>
                 <div className="content">
