@@ -33,6 +33,21 @@
     transition: all 0.3s ease;
 }
 
+.leftbar button {
+    /* padding: 15px 20px; */
+    margin-bottom: 10px;
+    height: 15px;
+    width: 100px;
+    border-radius: 8px;
+
+    font-size: 17px;
+    font-weight: 500;
+    color: #333;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
 /* Hover Effect */
 .leftbar li:hover {
     background: #2563eb;

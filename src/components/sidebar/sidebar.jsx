@@ -1,7 +1,13 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./sidebar.css"
 
 function Sidebar(){
+    const navigate = useNavigate();
+
+    function logout(){
+        navigate("/")
+    }
+
     return(
         <div className="leftbar">
             <ul>
@@ -10,50 +16,61 @@ function Sidebar(){
                     isActive ? "active":""    
                 }
                 >
-                <li>Dashboard</li>
+                Dashboard
                 </NavLink>
+
                 <NavLink to="/student"
                 className = {({isActive})=>
                     isActive ? "active":""    
                 }
                 >
-                <li>Student</li>
+                Student
                 </NavLink>
-                <NavLink to="/Companies"
+
+                <NavLink to="/Companys"
                 className = {({isActive})=>
                     isActive ? "active":""    
                 }
                 >
-                <li>Companies</li>
+                Companies
                 </NavLink>
+
                 <NavLink to="drive"
                 className = {({isActive})=>
                     isActive ? "active":""    
                 }
                 >
-                <li>Drive's</li>
+                Campus Drive's
                 </NavLink>
+
                 <NavLink to="report"
                 className = {({isActive})=>
                     isActive ? "active":""    
                 }
                 >
-                <li>Reports</li>
+                Reports
                 </NavLink>
+
                 <NavLink to="settings"
                 className = {({isActive})=>
                     isActive ? "active":""    
                 }
                 >
-                <li>Settings</li>
+                Settings
                 </NavLink>
-                <NavLink to="login"
+
+                {/* <NavLink to="login"
                 className = {({isActive})=>
                     isActive ? "active":""    
                 }
-                >
-                <li>Logout</li>
-                </NavLink>
+                > */}
+                <button 
+                className = {({isActive})=>
+                    isActive ? "active":""  } 
+                onClick={logout}>
+                    Logout
+                </button>
+                {/* </NavLink> */}
             </ul>
         </div>
     )
