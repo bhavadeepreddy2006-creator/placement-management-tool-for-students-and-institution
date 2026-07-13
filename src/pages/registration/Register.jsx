@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
-import Studenttable from "../../components/Studenttable";
+import { Link, useNavigate } from "react-router-dom";
+// import Studenttable from "../../components/students/Studenttable";
+import Studenttable from "../../components/students/Studenttable";
 import "./register.css";
 import { useState } from "react";
 
@@ -11,6 +12,7 @@ function Register(){
     const [cgpa,setcgpa] = useState("");
     const [Password,setpassword] = useState("");
     const [students,setStudents] = useState([]);
+    const navigate = useNavigate();
 
     const emailpattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const passwordpattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -32,6 +34,7 @@ function Register(){
       }
       
       const Student ={
+        id:Date.now(),
         StudentName,
         email,
         Phone,
@@ -42,8 +45,7 @@ function Register(){
       //Add students to array
       // spread operator
       setStudents([...students,Student]);
-      console.log("Registration successfull");
-      console.log({Student});
+      navigate("/student");
 
       // clear form
       SetStudentName("");
@@ -105,7 +107,7 @@ function Register(){
             Register Student
           </button>
         </form>
-        <Link to="/login">
+        <Link to="/">
         <h3>Already had an acount</h3>
         </Link>
         <Studenttable students = {students} />
