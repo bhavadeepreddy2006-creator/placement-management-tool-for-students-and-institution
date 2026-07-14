@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Clock from "../clock/clock";
 import "./dashbord.css";
 import { useState,useEffect } from "react";
@@ -45,8 +46,22 @@ function Dashbord(){
         ])
    }
 
+   const navigate = useNavigate();
+
    useEffect(()=>{
-    alert("Welcome admin")
+    const loginstatus = sessionStorage.getItem("isLoggedIn");
+    // if (loginstatus === "true"){
+    //     console.log("Admin is already loggged in");
+    // }else{
+    //     console.log("please loggin ")
+    // }
+
+    // proficinal approch
+
+    if (loginstatus !== "true")
+    {
+       navigate("/")
+    }
    },[]);
 
     return(
