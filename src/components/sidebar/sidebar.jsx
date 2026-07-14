@@ -5,6 +5,7 @@ function Sidebar(){
     const navigate = useNavigate();
 
     function logout(){
+        sessionStorage.removeItem("isLoggedIn");
         navigate("/")
     }
 
