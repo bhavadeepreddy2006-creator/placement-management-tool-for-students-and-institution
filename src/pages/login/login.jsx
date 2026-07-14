@@ -39,7 +39,8 @@ function Login(){
     }
 
     if(isLoggedIn){
-        navigate("/dashboard")
+        sessionStorage.setItem("isLoggedIn","true");
+        navigate("/dashboard");
     }
 
     return(
