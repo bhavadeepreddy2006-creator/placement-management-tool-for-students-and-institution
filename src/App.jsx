@@ -15,6 +15,7 @@ import Companies from "./pages/companies/companies";
 import CompanyDetails from "./components/companys/companydetails";
 import CompanyRegistration from "./pages/companies/comanyregistration";
 import CompanyList from "./components/companys/companieslist";
+import EditStudent from "./pages/editstudent/editstudent";
 
 // root component
 // create component using fucntions
@@ -30,7 +31,10 @@ import CompanyList from "./components/companys/companieslist";
 // const [Students,setStudents] = useState([]);
 
 function App(){
-  const [students,setStudents] = useState([]);
+  const [students,setStudents] = useState(()=>{
+    const savedstundets = localStorage.getItem("Studentdata");
+    return savedstundets ? JSON.parse(savedstundets) : [];
+  });
   return(
     <div>
       {/* <Home/> */}
@@ -39,11 +43,12 @@ function App(){
         {/* <Route path="/" element = {<Home/>}/> */}
         <Route path="/" element = {<Login/>}/>
         {/* <Route path="/" element = {<Login/>}/> */}
-        <Route path="/registration" element = {<Register/>} />
+        <Route path="/registration" element = {<Register students = {students} setStudents = {setStudents}/>} />
         <Route element = {<Layout/>}>
           <Route path="/dashboard" element = {<Dashbord/>}/>
-          <Route path="/student" element = {<Stu students = {students}/>}/>
-          <Route path="/student/:id" element = {<Studetails/>}/>
+          <Route path="/student" element = {<Stu students = {students} setStudents = {setStudents}/>}/>
+          <Route path="/student/:id" element = {<Studetails students = {students} setStudents = {setStudents}/>}/>
+          <Route path="/student/edit/:id" element = {<EditStudent students = {students} setStudents = {setStudents}/>}/>
           <Route path="/companyregistration"element={<CompanyRegistration/>}/>
           <Route path="/Companys" element={<CompanyList/>}/>
           <Route path="/company/:id"element={<CompanyDetails/>}/>
