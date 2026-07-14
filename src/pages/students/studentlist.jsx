@@ -4,43 +4,32 @@ import Studenttable from "../../components/students/Studenttable";
 import { useEffect, useState } from "react";
 
 
-function Students() {
-    const [students,setStudents] = useState([]);
+function Students({students, setStudents}) {
+    // const [students,setStudents] = useState([]);
     const [loading,setLoading] = useState(true)
     const navigate = useNavigate();
 
-    useEffect(()=>{
-        setTimeout(()=>{
-            setStudents([
-                {
-            id: 1,
-            studentName: "Nani",
-            rollNo: "23HT1A0501",
-            email: "nani@gmail.com",
-            password: "Nani@123",
-            branch: "CSE",
-            cgpa: 8.8,
-            year: "4th Year"
-        },
-        {
-            id: 2,
-            studentName: "Love",
-            rollNo: "23HT1A0502",
-            email: "love@gmail.com",
-            password: "Love@123",
-            branch: "AI",
-            cgpa: 8.5,
-            year: "4th Year"
-        }
+    useEffect(() => {
 
-            ]);
+        setTimeout(() => {
             setLoading(false);
-        },2000)
-    },[]);
+        }, 1000);
+
+    }, []);
+
+
     if(loading){
         return <h2>Loading .......</h2>
     }
-        
+    // Functionality for deleting a student  
+    function deletestudent(id){
+        const updatedstudents = students.filter(
+            (student)=>student.id!==id
+        );
+        setStudents(updatedstudents);
+        localStorage.setItem("students",JSON.stringify(updatedstudents))
+    }
+
     function regclick(){
         navigate("/registration");
     }
@@ -72,9 +61,8 @@ function Students() {
     </div>
 
     <div className="student-table-container">
-        <Studenttable students={students} />
+        <Studenttable students={students} deletestudent = {deletestudent}/>
     </div>
-
 </div>
     );
 }
