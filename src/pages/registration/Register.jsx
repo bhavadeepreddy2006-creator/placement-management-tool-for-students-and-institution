@@ -4,14 +4,16 @@ import Studenttable from "../../components/students/Studenttable";
 import "./register.css";
 import { useState } from "react";
 
-function Register(){
-    const [StudentName,SetStudentName] = useState("");
+function Register({students, setStudents}){
+    const [studentName,SetStudentName] = useState("");
+    const [rollNo,setrollNo] = useState("");
     const [email,setemail] = useState("");
     const [Phone,setphone] = useState("");
-    const [Branch,setbranch] = useState("");
+    const [branch,setbranch] = useState("");
     const [cgpa,setcgpa] = useState("");
+    const [year,setyear] = useState("");
     const [Password,setpassword] = useState("");
-    const [students,setStudents] = useState([]);
+    // const [students,setStudents] = useState([]);
     const navigate = useNavigate();
 
     const emailpattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -21,7 +23,7 @@ function Register(){
       event.preventDefault();
 
       // validation
-      if(StudentName.trim()==="" || Phone.trim()==="" || Branch.trim()==="" || Password.trim()==="")
+      if(studentName.trim()==="" || Phone.trim()==="" || branch.trim()==="" || Password.trim()==="")
       {
         alert("Please fill all the fields")
         return;
@@ -35,16 +37,26 @@ function Register(){
       
       const Student ={
         id:Date.now(),
-        StudentName,
+        studentName,
+        rollNo,
         email,
         Phone,
-        Branch,
+        branch,
         cgpa,
+        year,
         Password
       };
       //Add students to array
       // spread operator
-      setStudents([...students,Student]);
+      const updatedstudents = [
+        ...students,Student
+      ]
+
+      setStudents(updatedstudents);
+      localStorage.setItem("Studentdata",
+        JSON.stringify(updatedstudents)
+      );
+
       navigate("/student");
 
       // clear form
@@ -66,6 +78,13 @@ function Register(){
               type="text"
               placeholder="Enter Student Name"
               onChange={(event) => SetStudentName(event.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              placeholder="Enter Reg.no"
+              onChange={(event) => setrollNo(event.target.value)}
             />
           </div>
           <div className="form-group">
@@ -95,6 +114,17 @@ function Register(){
               placeholder="Enter Cgpa"
               onChange={(event) => setcgpa(event.target.value)}
             />
+          </div>
+          <div className="form-group">
+            <select
+                    value={year}
+                    onChange={(e) => setyear(e.target.value)}>
+                    <option value="">Select Year</option>
+                    <option value="1st Year">1st Year</option>
+                    <option value="2nd Year">2nd Year</option>
+                    <option value="3rd Year">3rd Year</option>
+                    <option value="4th Year">4th Year</option>
+            </select>
           </div>
           <div className="form-group">
             <input
