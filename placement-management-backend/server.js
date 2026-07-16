@@ -2,11 +2,16 @@ import express, { request, response } from "express";
 import stundentsRoutes from "./routes/stundentsRoutes.js";
 import homeRoutes from "./routes/homeRoutes.js";
 import companyRoutes from "./routes/companyRoutes.js";
+import connectDB from "./config/db.js";
 
 const app = express();
 // const express = require("express");
 
+// Middleware : converts json-objects
 app.use(express.json());
+
+// call connections db
+connectDB();
 
 app.use("/stundents",stundentsRoutes);
 app.use("/home",homeRoutes);
