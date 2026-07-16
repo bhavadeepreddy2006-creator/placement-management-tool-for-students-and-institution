@@ -5,10 +5,11 @@ import { useEffect, useState } from "react";
 
 
 function Students({students, setStudents}) {
-    // const [students,setStudents] = useState([]);
+    const [search, setSearch] = useState("");
     const [loading,setLoading] = useState(true)
     const navigate = useNavigate();
 
+    
     useEffect(() => {
 
         setTimeout(() => {
@@ -18,18 +19,28 @@ function Students({students, setStudents}) {
     }, []);
 
 
-    if(loading){
-        return <h2>Loading .......</h2>
-    }
-    // Functionality for deleting a student  
+    if (loading) {
+    return (
+        <div className="loading">
+            <h2>Loading Students...</h2>
+        </div>
+    );
+}
+    // Functionality for deleting a student
     function deletestudent(id){
         const updatedstudents = students.filter(
             (student)=>student.id!==id
         );
         setStudents(updatedstudents);
-        localStorage.setItem("students",JSON.stringify(updatedstudents))
+        localStorage.setItem("students",JSON.stringify(updatedstudents));
     }
 
+    const filteredStudents = students.filter((student) =>
+        student.studentName.toLowerCase().includes(search.toLowerCase()) ||
+        student.rollNo.toLowerCase().includes(search.toLowerCase()) ||
+        student.email.toLowerCase().includes(search.toLowerCase()) ||
+        student.branch.toLowerCase().includes(search.toLowerCase())
+    );
     function regclick(){
         navigate("/registration");
     }
@@ -57,11 +68,17 @@ function Students({students, setStudents}) {
         >
             + Add New Student
         </button>
-
+        <input
+            className="search-box"
+            type="text"
+            placeholder="Search Student..."
+            value={search}
+            onChange={(e)=>setSearch(e.target.value)}
+        />
     </div>
 
     <div className="student-table-container">
-        <Studenttable students={students} deletestudent = {deletestudent}/>
+        <Studenttable students={filteredStudents} deletestudent = {deletestudent}/>
     </div>
 </div>
     );

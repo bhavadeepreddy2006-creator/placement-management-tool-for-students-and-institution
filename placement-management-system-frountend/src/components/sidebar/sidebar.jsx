@@ -65,11 +65,11 @@ function Sidebar(){
                     isActive ? "active":""    
                 }
                 > */}
-                <button 
-                className = {({isActive})=>
-                    isActive ? "active":""  } 
-                onClick={logout}>
-                    Logout
+                <button
+                    className="logout-btn"
+                    onClick={logout}
+                    >
+                Logout
                 </button>
                 {/* </NavLink> */}
             </ul>

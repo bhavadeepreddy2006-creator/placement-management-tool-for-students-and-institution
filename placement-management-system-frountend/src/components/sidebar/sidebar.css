@@ -1,0 +1,98 @@
+/* ===========================
+   Sidebar
+=========================== */
+
+.leftbar{
+    width:250px;
+    min-height:calc(100vh - 80px);
+    background:#ffffff;
+
+    padding:25px 15px;
+
+    display:flex;
+    flex-direction:column;
+
+    border-right:1px solid #e5e7eb;
+    box-shadow:2px 0 10px rgba(0,0,0,0.08);
+}
+
+/* Menu */
+
+.leftbar ul{
+    list-style:none;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:12px;
+
+    margin:0;
+    padding:0;
+}
+
+/* Navigation Links */
+
+.leftbar a{
+    text-decoration:none;
+
+    color:#374151;
+
+    padding:14px 18px;
+
+    border-radius:10px;
+
+    font-size:17px;
+    font-weight:500;
+
+    transition:0.3s;
+
+    display:flex;
+    align-items:center;
+}
+
+/* Hover */
+
+.leftbar a:hover{
+    background:#dbeafe;
+    color:#2563eb;
+}
+
+/* Active Link */
+
+.leftbar a.active{
+    background:#2563eb;
+    color:#ffffff;
+    font-weight:600;
+
+    box-shadow:0 4px 12px rgba(37,99,235,.3);
+}
+
+/* Logout Button */
+
+.leftbar button{
+    margin-top:20px;
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+    border-radius:10px;
+
+    background:#ef4444;
+    color:#ffffff;
+
+    font-size:16px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+/* Logout Hover */
+
+.leftbar button:hover{
+    background:#dc2626;
+    transform:translateY(-2px);
+}
