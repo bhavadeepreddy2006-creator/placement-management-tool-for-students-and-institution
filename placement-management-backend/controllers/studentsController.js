@@ -1,63 +1,77 @@
-let students = [
-    {
-        id:101,
-        studentName : "Bhavadeep",
-        branch : "Cse",
-        cgpa : 8.5
-    },
-    {
-        id:102,
-        studentName : "Narendra",
-        branch : "Ai",
-        cgpa : 8.9
-    },
-    {
-        id:103,
-        studentName : "Manu",
-        branch : "Aiml",
-        cgpa : 9.0
+import { json, response } from "express";
+import Student from "../models/student.js";
+
+export async function getStudents(req,res){
+    try{
+        const students = await Student.find();
+        res.status(200).json({
+            success : true,
+            students
+        })
     }
-]
-
-export function getStudents(req,res){
-    res.status(200).json(students);
+    catch(error){
+        res.status(500).json({
+            success : false,
+            students
+        })
+    }
 };
 
-export function getStudnetById(req,res){
-    const id = Number(req.params.id);
+export async function getStudentsById(req, res) {
+    try {
+        const student = await Student.findById(req.params.id);
 
-    const student = students.find(
-        (student)=>student.id === id
-    );
-    if(!student){
-        return res.status(404).json({
-            success : false,
-            message : "student not found"
+        if (!student) {
+            return res.status(404).json({
+                success: false,
+                message: "Student not found",
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            student,
         });
-    };
-    // return student
-    res.status(200).json({
-        success:true,
-        student
-    });
-};
-
-export function addstudent(req,res){
-    // Read the JSON data -- react form
-    const student = req.body;
-    // VALIDATION
-    const id = Number(req.params.id);
-
-    const existingstudent = students.find(
-        (s)=>s.id === students.id
-    );
-    if(existingstudent){
-        return res.status(200).json({
-            success : false,
-            message : "student already found"
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
         });
-    };
-    // add into the array
+    }
+}
+
+export async function addstudent(req,res){
+    // create a new documnet in mongodb
+    try{
+        const student = await Student.create(req.body)
+            res.status(201).json({
+                success : true,
+                message : "Studnet Registered Succesfully",
+                student
+            })
+    }
+    catch(error){
+        res.status(201).json({
+            success : false,
+            message : "error.message",
+            student
+        })
+    }
+            // // Read the JSON data -- react form
+            // const student = req.body;
+            // // VALIDATION
+            // const id = Number(req.params.id);
+
+            // const existingstudent = students.find(
+            //     (s)=>s.id === students.id
+            // );
+            // if(existingstudent){
+            //     return res.status(200).json({
+            //         success : false,
+            //         message : "student already found"
+            //     });
+            // };
+            // add into the array
     students.push(student)
     res.status(201).json({
         success : true,
@@ -66,41 +80,52 @@ export function addstudent(req,res){
     });
 };
 
-export function UpdateStudent(req,res){
-    const id = Number(req.params.id);
-    const UpdateStudent = req.body;
-    let studentFound = false;
-    students = students.map((student)=>{
-        if(student.id === id){
-            studentFound = true;
-            return{
-                ...student, ...UpdateStudent
-            };
+export async function UpdateStudent(req,res){
+    try{
+        const student = await Student.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            {
+                new : true,
+                runValidators : true
+            }
+        );
+        if(!student){
+            return res.status(400).json({
+                success : false,
+                message : "Student not found"
+            });
         };
-        return student;
-    });
-    if(!studentFound){
-        return res.status(400).json({
+        res.status(200).json({
+            success : true,
+            message : "Student updated succefull",
+            student
+        });
+    }catch(error){
+        res.status(500).json({
             success : false,
-            message : "Student Not Found"
+            message : error.message
         });
     };
-    res.status(200).json({
-        success : true,
-        message : "Student updated successfully"
-    });
 };
 
-export function deleteStudent(req,res){
-    const id = Number(req.params.id);
-    const student = students.find(
-        (student)=> student.id === id
-    );
-    students = students.filter(
-        (student)=>student.id !== id
-    );
-    res.status(200).json({
+export async function deleteStudent(req,res){
+    try{
+        const student = await Student.findByIdAndDelete(req.params.id);
+        if(!student){
+            return res.status(404).json({
+                success : false,
+                message : "student is not found"
+            });
+        };
+        res.status(200).json({
         success : true,
         message : "Student deleted successfully"
     });
+    }catch(error){
+        return res.status(500).json({
+            success : false,
+            message : error.message
+        });
+    };
 };
