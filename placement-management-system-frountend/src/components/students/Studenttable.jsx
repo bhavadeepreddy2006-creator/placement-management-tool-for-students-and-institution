@@ -44,11 +44,15 @@ function Studenttable({students, deletestudent}){
                         <td> {Student.branch} </td>
                         <td> {Student.cgpa} </td>
                         <td> {Student.year} </td>
-                        <td>
+                        <td className="action-buttons">
                         <Link to={`/student/${Student.id}`}>
                         <button>View</button>
                         </Link>
-                        <Link to={`/student/edit/${Student.id}`}>Edit</Link>
+                        <Link to={`/student/edit/${Student.id}`}>
+                            <button className="edit-btn">
+                                Edit
+                            </button>
+                        </Link>
                         <button onClick={()=>deletestudent(Student.id)}>Delete</button>
                         </td>
                       </tr>
