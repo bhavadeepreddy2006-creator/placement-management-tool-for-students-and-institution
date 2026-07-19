@@ -35,6 +35,12 @@ function App(){
     const savedstundets = localStorage.getItem("Studentdata");
     return savedstundets ? JSON.parse(savedstundets) : [];
   });
+
+  const [companies, setCompanies] = useState(() => {
+    const savedCompanies = localStorage.getItem("Companydata");
+    return savedCompanies ? JSON.parse(savedCompanies) : [];
+  });
+
   return(
     <div>
       {/* <Home/> */}
@@ -49,9 +55,9 @@ function App(){
           <Route path="/student" element = {<Stu students = {students} setStudents = {setStudents}/>}/>
           <Route path="/student/:id" element = {<Studetails students = {students} setStudents = {setStudents}/>}/>
           <Route path="/student/edit/:id" element = {<EditStudent students = {students} setStudents = {setStudents}/>}/>
-          <Route path="/companyregistration"element={<CompanyRegistration/>}/>
-          <Route path="/Companys" element={<CompanyList/>}/>
-          <Route path="/company/:id"element={<CompanyDetails/>}/>
+          <Route path="/companyregistration"element={<CompanyRegistration companies={companies} setCompanies={setCompanies}/>}/>
+          <Route path="/Companys" element={<CompanyList companies={companies} setCompanies={setCompanies}/>}/>
+          <Route path="/company/:id"element={<CompanyDetails companies={companies} setCompanies={setCompanies}/>}/>
         </Route>
         <Route path="*" element = {<Notfound/>}>
 
