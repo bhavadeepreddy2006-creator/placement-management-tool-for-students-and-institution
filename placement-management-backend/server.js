@@ -13,10 +13,10 @@ app.use(express.json());
 // call connections db
 connectDB();
 
-app.use("/stundents",stundentsRoutes);
+app.use("/",stundentsRoutes);
 app.use("/home",homeRoutes);
 
-app.use("/",companyRoutes);
+app.use("/company",companyRoutes);
 
 app.listen(8000,()=>{
     console.log("server is strated at 8000");
