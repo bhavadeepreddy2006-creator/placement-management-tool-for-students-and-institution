@@ -3,17 +3,19 @@ import stundentsRoutes from "./routes/stundentsRoutes.js";
 import homeRoutes from "./routes/homeRoutes.js";
 import companyRoutes from "./routes/companyRoutes.js";
 import connectDB from "./config/db.js";
+import  cors from "cors";
 
 const app = express();
 // const express = require("express");
 
 // Middleware : converts json-objects
 app.use(express.json());
+app.use(cors());
 
 // call connections db
 connectDB();
 
-app.use("/",stundentsRoutes);
+app.use("/students",stundentsRoutes);
 app.use("/home",homeRoutes);
 
 app.use("/company",companyRoutes);
