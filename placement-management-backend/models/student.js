@@ -1,51 +1,52 @@
 import mongoose from "mongoose";
 
 const studentSchema = new mongoose.Schema({
-    studentName : {
-        type : String,
-        required : true,
-        trim : true
+    studentName:{
+        type:String,
+        required:true,
+        trim:true
     },
-    rollNo : {
-        type : String,
-        require : true,
-        trim : true,
-        unique : true
+    rollno:{
+        type:Number,
+        required:true,
+        // unique : true,
+        trim:true
+    },    
+    email:{
+        type:String,
+        required:true,
+        unique:true,
+        lowercase:true
+    },    
+    phone:{
+        type:String,
+        required:true,
+        minlength:10,
+        maxlength:10
+    },    
+    branch:{
+        type:String,
+        required:true,
+        enum:["CSE","CSE-AI","CSE-DS","CSE-CS","ECE"]
+    },    
+    cgpa:{
+        type:Number,
+        required:true,
+        min:0,
+        max:10
     },
-    email : {
-        type : String,
-        require : true,
-        trim : true
+    year:{
+        type:Number,
+        required:true,
+        min:1,
+        max:4
     },
-    phone : {
-        type : String,
-        require : true,
-        minlength : 10,
-        maxlength : 10,
-        trim : true
-    },
-    branch : {
-        type : String,
-        require : true,
-        enum : ["CSE","CSM","CSE-AI","CIVIL","ECE","EEE"]
-    },
-    cgpa : {
-        type : Number,
-        require : true,
-        min : 0,
-        max : 10
-    },
-    year : {
-        type : Number,
-        require : true,
-        min : 1,
-        max : 4
-    }
 },{
-    timestamps : true
+    timestamps:true
 });
+//Model represents a Mongodb collecction
+//and used to perform CRUD operations
 
-// Model :  represents a MongoDB collection and used to perform crud operations
 const Student = mongoose.model(
     "Student",
     studentSchema
