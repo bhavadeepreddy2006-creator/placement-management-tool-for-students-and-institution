@@ -2,86 +2,130 @@ import "./studentlist.css";
 import { Link, useNavigate } from "react-router-dom";
 import Studenttable from "../../components/students/Studenttable";
 import { useEffect, useState } from "react";
+import api from "../../api/api";
 
 
-function Students({students, setStudents}) {
+function Students({}) {
+    const [page,setpage] = useState(1);
+    const limit = 5;
+    const [totalpages, settotalpages] = useState([]);
+    const [students, setStudents] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
-    const [loading,setLoading] = useState(true)
-    const navigate = useNavigate();
 
-    
-    useEffect(() => {
+    async function fetchStudents() {
 
-        setTimeout(() => {
+        try {
+            setLoading(true);
+            const response = await api.get(`/students?page=${pageNumber}&limits=${limit}`);
+            setStudents(response.data.students);
+
+        } catch (error) {
+            console.log(error);
+            alert("Failed to fetch students");
+
+        } finally {
+
             setLoading(false);
-        }, 1000);
 
+        }
+
+    }
+    useEffect(() => {
+        fetchStudents();
     }, []);
 
+    async function searchStudents(value) {
+
+        setSearch(value);
+
+        if (value.trim() === "") {
+            fetchStudents();
+            return;
+        }
+
+        try {
+
+            const response = await api.get(`/students/search?q=${value}`);
+
+            setStudents(response.data.students);
+
+        } catch (error) {
+
+            console.log(error);
+
+        }
+
+    }
+
+    async function deleteStudent(id) {
+
+        const confirmDelete = window.confirm(
+            "Are you sure you want to delete this student?"
+        );
+
+        if (!confirmDelete) return;
+
+        try {
+
+            const response = await api.delete(`/students/${id}`);
+
+            alert(response.data.message);
+
+            fetchStudents();
+
+        } catch (error) {
+
+            console.log(error);
+
+            alert(
+                error.response?.data?.message ||
+                "Delete Failed"
+            );
+
+        }
+
+    }
 
     if (loading) {
-    return (
-        <div className="loading">
-            <h2>Loading Students...</h2>
-        </div>
-    );
-}
-    // Functionality for deleting a student
-    function deletestudent(id){
-        const updatedstudents = students.filter(
-            (student)=>student.id!==id
-        );
-        setStudents(updatedstudents);
-        localStorage.setItem("students",JSON.stringify(updatedstudents));
-    }
-
-    const filteredStudents = students.filter((student) =>
-        student.studentName.toLowerCase().includes(search.toLowerCase()) ||
-        student.rollNo.toLowerCase().includes(search.toLowerCase()) ||
-        student.email.toLowerCase().includes(search.toLowerCase()) ||
-        student.branch.toLowerCase().includes(search.toLowerCase())
-    );
-    function regclick(){
-        navigate("/registration");
+        return <h2>Loading Students...</h2>;
     }
 
     return (
+
         <div className="student-page">
 
-    <div className="student-header">
+            <div className="student-header">
 
-        <div className="student-heading">
+                <div>
+                    <h1>Student Management</h1>
+                    <p>Manage all registered students.</p>
+                </div>
 
-            <h1 className="student-title">
-                Student Management
-            </h1>
+                <Link to="/registration">
+                    <button className="add-btn">
+                        + Add Student
+                    </button>
+                </Link>
 
-            <p className="student-subtitle">
-                Manage all registered students here.
-            </p>
+            </div>
+
+            <input
+                type="text"
+                className="search-bar"
+                placeholder="Search by Student Name"
+                value={search}
+                onChange={(e) => searchStudents(e.target.value)}
+            />
+
+            <Studenttable
+                students={students}
+                deleteStudent={deleteStudent}
+            />
 
         </div>
 
-        <button
-            className="add-student-btn"
-            onClick={regclick}
-        >
-            + Add New Student
-        </button>
-        <input
-            className="search-box"
-            type="text"
-            placeholder="Search Student..."
-            value={search}
-            onChange={(e)=>setSearch(e.target.value)}
-        />
-    </div>
+        );
 
-    <div className="student-table-container">
-        <Studenttable students={filteredStudents} deletestudent = {deletestudent}/>
-    </div>
-</div>
-    );
 }
-
 export default Students;
