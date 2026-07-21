@@ -2,66 +2,83 @@ import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "../../pages/registration/register.css";
 import Stu from "../../pages/students/studentlist";
+import "./studenttable.css";
 
-function Studenttable({students, deletestudent}){
-  const {id,StudentName} = useParams();
-  const navigate = useNavigate();
-  // function studentdetails(){
-  //   navigate("/student/")
-  // }
-  return(
-    <div className="studenttable">
-        <h2>Student Details</h2>
-            {
-              students.length === 0 ?
-                <h2>No Student Found</h2>
-              :
-              <table border="1">
+function StudentTable({ students, deleteStudent }) {
+
+    if (students.length === 0) {
+        return (
+            <h2 className="no-data">
+                No Students Found
+            </h2>
+        );
+    }
+
+    return (
+        <div className="table-container">
+
+            <table className="student-table">
+
                 <thead>
-                  <tr>
-                    <th>S.no</th>
-                    <th>Student UID</th>
-                    <th>Name</th>
-                    <th>Reg NO</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Branch</th>
-                    <th>CGPA</th>
-                    <th>Year</th>
-                    <th>Actions</th>
-                  </tr>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Name</th>
+                        <th>Roll No</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Branch</th>
+                        <th>CGPA</th>
+                        <th>Year</th>
+                        <th>Actions</th>
+                    </tr>
                 </thead>
+
                 <tbody>
-                  {
-                    students.map((Student,id)=>(
-                      <tr key={Student.id} key={id}>
-                        <td>{id+1}</td>
-                        <td> {Student.id}</td>
-                        <td> {Student.studentName} </td>
-                        <td> {Student.rollNo} </td>
-                        <td> {Student.email} </td>
-                        <td> {Student.Phone} </td>
-                        <td> {Student.branch} </td>
-                        <td> {Student.cgpa} </td>
-                        <td> {Student.year} </td>
-                        <td className="action-buttons">
-                        <Link to={`/student/${Student.id}`}>
-                        <button>View</button>
-                        </Link>
-                        <Link to={`/student/edit/${Student.id}`}>
-                            <button className="edit-btn">
-                                Edit
-                            </button>
-                        </Link>
-                        <button onClick={()=>deletestudent(Student.id)}>Delete</button>
-                        </td>
-                      </tr>
-                    ))
-                  }
+
+                    {students.map((student, index) => (
+                        <tr key={student._id}>
+
+                            <td>{index + 1}</td>
+                            <td>{student.studentName}</td>
+                            <td>{student.rollno}</td>
+                            <td>{student.email}</td>
+                            <td>{student.phone}</td>
+                            <td>{student.branch}</td>
+                            <td>{student.cgpa}</td>
+                            <td>{student.year}</td>
+
+                            <td className="action-buttons">
+
+                                <Link to={`/Students/${student._id}`}>
+                                    <button className="view-btn">
+                                        View
+                                    </button>
+                                </Link>
+
+                                <Link to={`/EditStudent/${student._id}`}>
+                                    <button className="edit-btn">
+                                        Edit
+                                    </button>
+                                </Link>
+
+                                <button
+                                    className="delete-btn"
+                                    onClick={() => deleteStudent(student._id)}
+                                >
+                                    Delete
+                                </button>
+
+                            </td>
+
+                        </tr>
+                    ))}
+
                 </tbody>
-              </table>
-              }
+
+            </table>
+
         </div>
-  )
+    );
 }
-export default Studenttable;
+
+export default StudentTable;
