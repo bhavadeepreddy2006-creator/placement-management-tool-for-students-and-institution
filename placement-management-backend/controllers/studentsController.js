@@ -3,10 +3,22 @@ import Student from "../models/student.js";
 
 export async function getStudents(req,res){
     try{
-        const students = await Student.find();
+        const sortField = req.query.sort || "studnetName";
+        const order =  req.query.order || "asc";
+        const student = await Student.find().toSorted({[sortField]:sortorder})
+        const page = Number(res.query.page);
+        const limit = Number(res.query.limit) || 10;
+        const skip = (pages-1)*limit;
+        // conunting students form mongo
+        const totalStudents =  await Student.countDocuments();
+        const totalpages = Math.ceil(totalStudents/limit);
+        const students = await Student.find().skip(skip).limit(limit);
         res.status(200).json({
             success : true,
-            students
+            students,
+            currentpage : page,
+            totalpages,
+            totalStudents
         })
     }
     catch(error){
@@ -18,9 +30,10 @@ export async function getStudents(req,res){
 };
 
 export async function getStudentsById(req, res) {
+    
     try {
+        
         const student = await Student.findById(req.params.id);
-
         if (!student) {
             return res.status(404).json({
                 success: false,
@@ -53,9 +66,10 @@ export async function addstudent(req,res){
     catch(error){
         res.status(201).json({
             success : false,
-            message : "error.message",
+            message : error.message,
             student
         })
+    }
     }
             // // Read the JSON data -- react form
             // const student = req.body;
@@ -72,13 +86,13 @@ export async function addstudent(req,res){
             //     });
             // };
             // add into the array
-    students.push(student)
-    res.status(201).json({
-        success : true,
-        message : "Student Registered successfully",
-        student
-    });
-};
+    // students.push(student)
+    // res.status(201).json({
+    //     success : true,
+    //     message : "Student Registered successfully",
+    //     student
+    // });
+
 
 export async function UpdateStudent(req,res){
     try{
@@ -129,3 +143,28 @@ export async function deleteStudent(req,res){
         });
     };
 };
+
+export const searchstudents = async(req,res) =>{
+    
+    try{
+        const search = req.query.q || "";
+
+        const students = await Student.find({
+            studentName : {
+                $regex : search,
+                // ignore uppercase and lowercase
+                $options : "i"
+            }
+        });
+        res.status(200).json({
+            success : true,
+            message : "serach complete"
+        })
+    }
+    catch(error){
+        res.status(500).json({
+            success : false,
+            message : error.message
+        })
+    }
+}
