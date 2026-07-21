@@ -13,6 +13,10 @@ function EditStudent({students,setStudents}) {
     const [cgpa,setCgpa] = useState(student?.cgpa || "");
     const [year,setyear] = useState(student?.year || "");
 
+    function updatedStudents(e){
+
+    }
+
     if(!student){
         return <h2>No Students found</h2>;
     }
