@@ -17,7 +17,7 @@ function Students({}) {
 
         try {
             setLoading(true);
-            const response = await api.get(`/students?page=${pageNumber}&limits=${limit}`);
+            const response = await api.get(`/students?page=${page}&limits=${limit}`);
             setStudents(response.data.students);
 
         } catch (error) {
