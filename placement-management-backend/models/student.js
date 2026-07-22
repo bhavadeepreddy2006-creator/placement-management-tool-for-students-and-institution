@@ -41,6 +41,11 @@ const studentSchema = new mongoose.Schema({
         min:1,
         max:4
     },
+    // DB stores image file name or relative path
+    image:{
+        type : String,
+        default : ""
+    },
 },{
     timestamps:true
 });
