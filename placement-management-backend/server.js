@@ -3,6 +3,7 @@ import stundentsRoutes from "./routes/stundentsRoutes.js";
 import homeRoutes from "./routes/homeRoutes.js";
 import companyRoutes from "./routes/companyRoutes.js";
 import connectDB from "./config/db.js";
+import authrouts from "./routes/authrouts.js";
 import  cors from "cors";
 
 const app = express();
@@ -11,6 +12,10 @@ const app = express();
 // Middleware : converts json-objects
 app.use(express.json());
 app.use(cors());
+
+app.use("/uploads",express.static("uploads"));
+
+app.use("/auth",authrouts);
 
 // call connections db
 connectDB();
