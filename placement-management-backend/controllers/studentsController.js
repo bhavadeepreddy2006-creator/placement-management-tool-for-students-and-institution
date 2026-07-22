@@ -56,7 +56,18 @@ export async function getStudentsById(req, res) {
 export async function addstudent(req,res){
     // create a new documnet in mongodb
     try{
-        const student = await Student.create(req.body)
+        const image = req.file ?
+        req.file.filename : "";
+        // create a new document in mongodb
+        const student = await Student.create({
+            studentName,
+            email,
+            phone,
+            branch,
+            cgpa,
+            year,
+            image
+        })
             res.status(201).json({
                 success : true,
                 message : "Studnet Registered Succesfully",
